@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+  
+<head>  
+    <title>JQuery QRCode Example</title>  
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
+    <meta name="viewport" content="width=device-width, initial-scale=2,user-scalable=no" />-->  
+    <style>  
+        #divqrcode {  
+            width: 102px;  
+            height: 102px;  
+            margin-top: 14px;  
+        }  
+    </style>  
+    <script src="Scripts/jquery-latest.min.js"></script>  
+    <script type="text/javascript" src=" Scripts/qrcode.min.js"></script>  
+</head>  
+  
+<body>  
+    <h1 style="margin-top:147px;">JQuery QRCode Demo</h1> Please enter your input:  
+    <input id="texInput" type="text" value="SantoshA" /><br />  
+    <div id="divqrcode"></div>  
+  
+    <script type="text/javascript">  
+        var qrcode = new QRCode($("#divqrcode"),  
+        {  
+            width: 102,  
+            height: 102,  
+        });  
+  
+        function generateCode()  
+        {  
+            var _text = $("#texInput");  
+            if (!_text.value)  
+            {  
+                alert("Enter your input!");  
+                _text.focus();  
+                return;  
+            }  
+            qrcode.makeCode(_text.value);  
+        }  
+        generateCode();  
+        $("#texInput").  
+        on("blur", function()  
+        {  
+            generateCode();  
+        }).  
+        on("keydown", function(e)  
+        {  
+            if (e.keyCode == 13)  
+            {  
+                generateCode();  
+            }  
+        });  
+    </script>  
+</body>  
